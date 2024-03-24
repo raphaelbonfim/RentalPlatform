@@ -7,6 +7,7 @@ namespace Domain.Models
     public class Motorcycle : Aggregate
     {
         protected Motorcycle(){}
+
         public Motorcycle(short year, string model, string plate, Guid id = default)
         {
             Id = id;

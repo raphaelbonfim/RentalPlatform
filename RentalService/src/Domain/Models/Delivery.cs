@@ -4,18 +4,21 @@ namespace Domain.Models
 {
     public class Delivery : Entity
     {
-        public Delivery() { }
+        protected Delivery() { }
 
-        public Delivery(DateTime notificationDate, Guid orderId, bool avaliable)
+        public Delivery(DeliveryDriver deliveryDriver, Guid orderId, Guid id = default)
         {
-            NotificationDate = notificationDate;
+            Id = id;
+            NotificationDate = DateTime.Now;
+            Avaliable = true;
             OrderId = orderId;
-            Avaliable = avaliable;
+            DeliveryDriver = deliveryDriver;
         }
 
-        public virtual DateTime NotificationDate { get; private set; }
-        public virtual Guid OrderId { get; private set; }
-        public virtual bool Avaliable { get; private set; }
-        public virtual EDeliveryStatus DeliveryStatus { get; private set; }
+        public virtual DeliveryDriver DeliveryDriver { get; protected set; }
+        public virtual DateTime NotificationDate { get; protected set; }
+        public virtual Guid OrderId { get; protected set; }
+        public virtual bool Avaliable { get; protected set; }
+        public virtual EDeliveryStatus DeliveryStatus { get; protected set; }
     }
 }

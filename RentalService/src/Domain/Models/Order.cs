@@ -5,30 +5,31 @@ namespace Domain.Models
 
     public class Order : Aggregate
     {
-        public Order() { }
+        protected Order() { }
 
-        public Order(DateTime creationDate, float deliveryFee, string deliveredBy, EOrderStatus orderStatus, Guid id = default)
+        public Order(double deliveryFee, Guid id = default)
         {
             Id = id;
-            CreationDate = creationDate;
-            DeliveryFee = deliveryFee;
-            DeliveredBy = deliveredBy;
-            OrderStatus = orderStatus;
+            CreationDate = DateTime.Now;
+            OrderStatus = EOrderStatus.Avaliable;
+            DeliveryFee = deliveryFee;            
         }
 
-        public virtual DateTime CreationDate { get; private set; }
-        public virtual float DeliveryFee { get; private set; }
-        public virtual string DeliveredBy { get; private set; } //verificar o tipo
-        public virtual EOrderStatus OrderStatus { get; private set; }
+        public virtual DateTime CreationDate { get; protected set; }
+        public virtual double DeliveryFee { get; protected set; }
+        public virtual Guid? DeliveredBy { get; protected set; } 
+        public virtual EOrderStatus OrderStatus { get; protected set; }
 
 
         public void Accepted()
         {
             OrderStatus = EOrderStatus.Accepted;
         }
-        public void Delivered()
+
+        public void Delivered(Guid deliveryDriverId)
         {
             OrderStatus = EOrderStatus.Delivered;
+            DeliveredBy = deliveryDriverId;
         }
 
     }

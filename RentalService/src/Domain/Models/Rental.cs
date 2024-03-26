@@ -4,7 +4,7 @@ namespace Domain.Models
 {
     public class Rental : Aggregate
     {
-        public Rental() { }
+        protected Rental() { }
 
         public Rental(
             Guid deliveryDriverId,
@@ -14,7 +14,7 @@ namespace Domain.Models
             DateTime endDate,
             DateTime forecastEndDate,
             short days,
-            float pricePerDay,
+            double pricePerDay,
             Guid id = default
             )
         {
@@ -29,13 +29,13 @@ namespace Domain.Models
             PricePerDay = pricePerDay;
         }
 
-        public virtual Guid DeliveryDriverId { get; private set; }
-        public virtual Guid MotorcycleId { get; private set; }
-        public virtual Guid RentalPlanId { get; private set; }
-        public virtual DateTime StartDate { get; private set; }
-        public virtual DateTime EndDate { get; private set; }
-        public virtual DateTime ForecastEndDate { get; private set; }
-        public virtual short Days { get; private set; }
-        public virtual float PricePerDay { get; private set; }
+        public virtual Guid DeliveryDriverId { get; protected set; }
+        public virtual Guid MotorcycleId { get; protected set; }
+        public virtual Guid RentalPlanId { get; protected set; }
+        public virtual DateTime StartDate { get; protected set; }
+        public virtual DateTime EndDate { get; protected set; }
+        public virtual DateTime ForecastEndDate { get; protected set; }
+        public virtual short Days { get; protected set; }
+        public virtual double PricePerDay { get; protected set; }
     }
 }

@@ -4,21 +4,23 @@ namespace Domain.Models
 {
     public class DeliveryDriver : Aggregate
     {
-        public DeliveryDriver() { }
+        protected DeliveryDriver() { }
 
-        public DeliveryDriver(string name, string cNPJ, CNH cnh, DateTime birthdate, Guid id = default)
+        public DeliveryDriver(string name, string cnpj, CNH cnh, DateTime birthdate, Guid id = default)
         {
             Id = id;
             Name = name;
-            CNPJ = cNPJ;
+            CNPJ = cnpj;
             CNH = cnh;
             Birthdate = birthdate;
         }
 
-        public virtual string Name { get; private set; }
-        public virtual string CNPJ { get; private set; }
-        public virtual CNH CNH { get; private set; }
-        public virtual DateTime Birthdate { get; private set; }
+        protected ICollection<Delivery> Deliverieslist { get; set; }
+        public virtual IReadOnlyCollection<Delivery> Deliveries => Deliverieslist.ToList();
+        public virtual string Name { get; protected set; }
+        public virtual string CNPJ { get; protected set; }
+        public virtual CNH CNH { get; protected set; }
+        public virtual DateTime Birthdate { get; protected set; }
 
 
         public void UpdateCHN() { }
@@ -26,6 +28,5 @@ namespace Domain.Models
         public void AcceptDelivery() { }
         public void RejectDelivery() { }
         public void CloseDelivery() { }
-
     }
 }

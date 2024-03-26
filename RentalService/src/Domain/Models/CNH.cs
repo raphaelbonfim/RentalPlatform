@@ -4,7 +4,7 @@ namespace Domain.Models
 {
     public class CNH : ValueObject<CNH>
     {
-        public CNH() { }
+        protected CNH() { }
 
         public CNH(int number, string imageUrl, ECnhType cnhType)
         {
@@ -13,13 +13,13 @@ namespace Domain.Models
             CnhType = cnhType;
         }
 
-        public virtual int Number { get; private set; }
-        public virtual string ImageUrl { get; private set; }
-        public virtual ECnhType CnhType { get; private set; }
+        public virtual int Number { get; protected set; }
+        public virtual string ImageUrl { get; protected set; }
+        public virtual ECnhType CnhType { get; protected set; }
 
         protected override IEnumerable<object> AttributesToEqualityCheck()
         {
-            throw new NotImplementedException();
+            return new object[] { Number, ImageUrl, CnhType };
         }
     }
 }

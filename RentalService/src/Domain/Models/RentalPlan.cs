@@ -4,9 +4,9 @@ namespace Domain.Models
 {
     public class RentalPlan : Aggregate
     {
-        public RentalPlan() { }
+        protected RentalPlan() { }
 
-        public RentalPlan(short days, float price, float paymentFine, Guid id = default)
+        public RentalPlan(short days, double price, double paymentFine, Guid id = default)
         {
             Id = id;
             Days = days;
@@ -14,8 +14,8 @@ namespace Domain.Models
             PaymentFine = paymentFine;
         }
 
-        public virtual short Days { get; private set; }
-        public virtual float Price { get; private set; }
-        public virtual float PaymentFine { get; private set; }
+        public virtual short Days { get; protected set; }
+        public virtual double Price { get; protected set; }
+        public virtual double PaymentFine { get; protected set; }
     }
 }

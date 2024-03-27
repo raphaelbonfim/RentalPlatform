@@ -36,6 +36,7 @@ namespace DomainTest
         [Theory]
         [InlineData(1999)]
         [InlineData(2026)]
+        
         public void Create_Motorcycle_Fail_When_Year_Invalid(short invalidYear)
         {
             //Act

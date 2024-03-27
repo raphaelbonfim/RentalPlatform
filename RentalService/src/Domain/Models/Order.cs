@@ -21,12 +21,12 @@ namespace Domain.Models
         public virtual EOrderStatus OrderStatus { get; protected set; }
 
 
-        public void Accepted()
+        public virtual void Accepted()
         {
             OrderStatus = EOrderStatus.Accepted;
         }
 
-        public void Delivered(Guid deliveryDriverId)
+        public virtual void Delivered(Guid deliveryDriverId)
         {
             OrderStatus = EOrderStatus.Delivered;
             DeliveredBy = deliveryDriverId;

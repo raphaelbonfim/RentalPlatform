@@ -23,10 +23,10 @@ namespace Domain.Models
         public virtual DateTime Birthdate { get; protected set; }
 
 
-        public void UpdateCHN() { }
-        public void AddDelivery() { }
-        public void AcceptDelivery() { }
-        public void RejectDelivery() { }
-        public void CloseDelivery() { }
+        public virtual void UpdateCHN() { }
+        public virtual void AddDelivery() { }
+        public virtual void AcceptDelivery() { }
+        public virtual void RejectDelivery() { }
+        public virtual void CloseDelivery() { }
     }
 }

@@ -21,8 +21,6 @@ namespace Domain.Validations
             RuleFor(x => x.Plate)
                 .Must(PlateValidations.MustBeValidPlate)
                 .WithMessage("Placa inválida");                
-        }
-
-       
+        }       
     }
 }

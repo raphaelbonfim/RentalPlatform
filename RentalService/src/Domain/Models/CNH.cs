@@ -1,4 +1,5 @@
 ﻿using Common.Domain;
+using Domain.Validations;
 
 namespace Domain.Models
 {
@@ -11,6 +12,8 @@ namespace Domain.Models
             Number = number;
             ImageUrl = imageUrl;
             CnhType = cnhType;
+
+            CheckInvariants(this, new CreateCNHInvariants()); //Verificar se está correto
         }
 
         public virtual int Number { get; protected set; }

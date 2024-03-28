@@ -1,4 +1,6 @@
 ﻿using Common.Domain;
+using Domain.Validations;
+using FluentValidation.Results;
 
 namespace Domain.Models
 {
@@ -6,13 +8,26 @@ namespace Domain.Models
     {
         protected DeliveryDriver() { }
 
-        public DeliveryDriver(string name, string cnpj, CNH cnh, DateTime birthdate, Guid id = default)
+        public DeliveryDriver(
+            string name,
+            string cnpj,
+            DateTime birthdate,
+            int cnhNumber,
+            string cnhImageUrl,
+            ECnhType cnhType,
+            Guid id = default
+            )
         {
             Id = id;
             Name = name;
             CNPJ = cnpj;
-            CNH = cnh;
+            CNH = new CNH(cnhNumber, cnhImageUrl, cnhType);
             Birthdate = birthdate;
+
+            CheckInvariants(this, new CreateDeliveryDriverInvariants(), new List<ValidationResult>
+            {
+                CNH.ValidationResult
+            });
         }
 
         protected ICollection<Delivery> Deliverieslist { get; set; }

@@ -7,16 +7,16 @@ namespace Domain.Models
     {
         protected CNH() { }
 
-        public CNH(int number, string imageUrl, ECnhType cnhType)
+        public CNH(string number, string imageUrl, ECnhType cnhType)
         {
             Number = number;
             ImageUrl = imageUrl;
             CnhType = cnhType;
 
-            CheckInvariants(this, new CreateCNHInvariants()); //Verificar se está correto
+            CheckInvariants(this, new CreateCNHInvariants());
         }
 
-        public virtual int Number { get; protected set; }
+        public virtual string Number { get; protected set; }
         public virtual string ImageUrl { get; protected set; }
         public virtual ECnhType CnhType { get; protected set; }
 

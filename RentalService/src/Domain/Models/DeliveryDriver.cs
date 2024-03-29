@@ -12,7 +12,7 @@ namespace Domain.Models
             string name,
             string cnpj,
             DateTime birthdate,
-            int cnhNumber,
+            string cnhNumber,
             string cnhImageUrl,
             ECnhType cnhType,
             Guid id = default

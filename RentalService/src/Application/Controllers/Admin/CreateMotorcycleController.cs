@@ -1,17 +1,20 @@
 ﻿using Application.DTOs.Admin;
 using Application.Services.Interfaces;
+using Common.Application;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace Application.Controllers.Admin
 {
+    //TODO: Criar uma nova Arquivo para as Controllers/Services de Modificar (put) e excluir (httpDelete)
+
     [ApiController]
     [Route("api/v1/motorcycle")]
     public class CreateMotorcycleController : ControllerBase
     {
-        private readonly ICreateMotorCycleCommandService _commandService;
+        private readonly ICreateMotorcycleCommandService _commandService;
 
-        public CreateMotorcycleController(ICreateMotorCycleCommandService commandService)
+        public CreateMotorcycleController(ICreateMotorcycleCommandService commandService)
         {
             _commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
         }
@@ -24,10 +27,14 @@ namespace Application.Controllers.Admin
             {
                 return Ok(await _commandService.ProcessAsync(dto, cancellationToken));
             }
-            catch (Exception ex)
+            catch (BusinessException ex)
             {
                 return BadRequest(ex.Message);               
-            }            
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Domain.Models
             NotificationDate = DateTime.Now;
             Avaliable = true;
             OrderId = orderId;
-            DeliveryDriver = deliveryDriver;
+            DeliveryDriver = deliveryDriver;    
         }
 
         public virtual DeliveryDriver DeliveryDriver { get; protected set; }

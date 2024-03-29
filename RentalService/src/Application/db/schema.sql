@@ -17,11 +17,12 @@
        name varchar(255) not null,
        cnpj varchar(255) not null,
        birthdate timestamp not null,
-       number int4,
-       image_url varchar(255),
+       cnh_number varchar(255),
+       cnh_image_url varchar(255),
        cnh_type varchar(255),
        primary key (Id),
-      unique (cnpj)
+      unique (cnpj),
+      unique (cnh_number)
     )
 
     create table deliveries (

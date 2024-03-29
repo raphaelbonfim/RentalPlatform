@@ -15,10 +15,6 @@ namespace Domain.Validations
             RuleFor(x => x.ImageUrl)
                 .NotEmpty()
                 .WithMessage("O endereço da imagem não pode ser vazio");
-
-            RuleFor(x => x.CnhType)
-                .NotEmpty()
-                .WithMessage("O tipo da CNH não pode ser vazio");
         }
     }
 }

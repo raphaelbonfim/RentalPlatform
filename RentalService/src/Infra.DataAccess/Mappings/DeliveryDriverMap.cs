@@ -33,8 +33,8 @@ namespace Infra.DataAccess.Mappings
 
             Component(x => x.CNH, y =>
                 {
-                    y.Map(x => x.Number).Column("number");
-                    y.Map(x => x.ImageUrl).Column("image_url");
+                    y.Map(x => x.Number).Column("cnh_number").UniqueKey("uk_cnh_number");
+                    y.Map(x => x.ImageUrl).Column("cnh_image_url");
                     y.Map(x => x.CnhType).Column("cnh_type");
                 });
 

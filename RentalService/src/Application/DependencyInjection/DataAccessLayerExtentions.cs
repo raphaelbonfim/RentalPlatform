@@ -1,3 +1,4 @@
+using Domain.Models;
 using Domain.Repositories;
 using Infra.DataAccess.Repositories;
 
@@ -9,6 +10,8 @@ public static class DataAccessLayerExtentions
     {
         #region Repositories
         services.AddScoped<IMotorcycleRepository, MotorcycleRepository>();        
+        services.AddScoped<IDeliveryDriverRepository, DeliveryDriverRepository>();       
+         
         #endregion
 
         #region DAO

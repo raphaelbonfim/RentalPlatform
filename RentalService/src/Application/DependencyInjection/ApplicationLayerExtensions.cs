@@ -8,7 +8,10 @@ namespace Application.DependencyInjection
 
         public static IServiceCollection AddApplicationLayer(this IServiceCollection services)
         {
-            services.AddScoped<ICreateMotorCycleCommandService, CreateMotorCycleCommandService>();
+            services.AddScoped<ICreateMotorcycleCommandService, CreateMotorcycleCommandService>();
+            services.AddScoped<ICreateDeliveryDriverCommandService, CreateDeliveryDriverCommandService>();
+            services.AddScoped<IUpdateMotorcycleCommandService, UpdateMotorcycleCommandService>();
+            services.AddScoped<IDeleteMotorcycleCommandService, DeleteMotorcycleCommandService>();
 
             return services;
         }

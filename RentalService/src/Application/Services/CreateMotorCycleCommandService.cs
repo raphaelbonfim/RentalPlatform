@@ -1,48 +1,51 @@
 ﻿using Application.DTOs.Admin;
 using Application.Services.Interfaces;
+using Common.Application;
 using Domain.Models;
 using Domain.Repositories;
 
 namespace Application.Services
 {
-    public class CreateMotorCycleCommandService : ICreateMotorCycleCommandService
+    public class CreateMotorcycleCommandService : ICreateMotorcycleCommandService
     {
         private readonly IMotorcycleRepository _motorcycleRepository;
 
-        public CreateMotorCycleCommandService(IMotorcycleRepository motorcycleRepository)
+        public CreateMotorcycleCommandService(IMotorcycleRepository motorcycleRepository)
         {
             _motorcycleRepository = motorcycleRepository;
         }
 
         public async Task<OutCreateMotorcycleDTO> ProcessAsync(InCreateMotorcycleDTO dto, CancellationToken cancellationToken)
         {
+            //throw new Exception("teste");
+
             //Verificar se existe uma moto com a mesma placa
 
-            var motocycle = await _motorcycleRepository.GetByPlateAsync(dto.Plate, cancellationToken);
+            var motorcycle = await _motorcycleRepository.GetByPlateAsync(dto.Plate, cancellationToken);
 
-            if (motocycle != null)
+            if (motorcycle != null)
             {
-                throw new Exception("Já existe uma moto com essa placa.");
+                throw new BusinessException("Já existe uma moto com essa placa.");
             }
 
             //se nao, criar o aggregado motorcycle
 
-            motocycle = new Motorcycle(dto.Year, dto.Model, dto.Plate);
+            motorcycle = new Motorcycle(dto.Year, dto.Model, dto.Plate);
 
             //verificar se o aggregado é valido
 
-            if (motocycle.Invalid)
+            if (motorcycle.Invalid)
             {
-                throw new Exception($"Falha ao criar a moto : {string.Join("; " , motocycle.ValidationResult.Errors.Select(x => x.ErrorMessage)) }");
+                throw new BusinessException($"Falha ao criar a moto : {motorcycle.ValidationResult.ToString(";")}");
             }
 
             //se sim, persistir no banco
 
-            await _motorcycleRepository.SaveOrUpdateAsync(motocycle, cancellationToken);
+            await _motorcycleRepository.SaveOrUpdateAsync(motorcycle, cancellationToken);
 
             //retornar o Id
 
-            return new OutCreateMotorcycleDTO() { Id = motocycle.Id };
+            return new OutCreateMotorcycleDTO() { Id = motorcycle.Id };
         }
     }
 }

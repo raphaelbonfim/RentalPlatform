@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Common.Domain;
+using Domain.Models;
 
 namespace Domain.Repositories
 {
@@ -7,6 +8,7 @@ namespace Domain.Repositories
         Task SaveOrUpdateAsync(Motorcycle aggregate, CancellationToken cancellationToken = default);
         Task<Motorcycle> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
         Task<Motorcycle> GetByPlateAsync(string plate, CancellationToken cancellationToken = default);
+        Task RemoveAsync(Motorcycle aggregate, CancellationToken cancellationToken = default);
 
     }
 }

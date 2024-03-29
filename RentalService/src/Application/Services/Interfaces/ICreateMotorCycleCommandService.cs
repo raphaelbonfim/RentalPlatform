@@ -2,7 +2,7 @@
 
 namespace Application.Services.Interfaces
 {
-    public interface ICreateMotorCycleCommandService
+    public interface ICreateMotorcycleCommandService
     {
         Task<OutCreateMotorcycleDTO> ProcessAsync(InCreateMotorcycleDTO dto, CancellationToken cancellationToken);
     }

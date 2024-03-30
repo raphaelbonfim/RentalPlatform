@@ -11,6 +11,7 @@ public static class DataAccessLayerExtentions
         #region Repositories
         services.AddScoped<IMotorcycleRepository, MotorcycleRepository>();        
         services.AddScoped<IDeliveryDriverRepository, DeliveryDriverRepository>();       
+        services.AddScoped<IOrderRepository, OrderRepository>();       
          
         #endregion
 

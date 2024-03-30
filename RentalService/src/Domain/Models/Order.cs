@@ -1,4 +1,7 @@
 ﻿using Common.Domain;
+using Domain.Validations;
+using FluentValidation.Results;
+
 
 namespace Domain.Models
 {
@@ -12,7 +15,9 @@ namespace Domain.Models
             Id = id;
             CreationDate = DateTime.Now;
             OrderStatus = EOrderStatus.Avaliable;
-            DeliveryFee = deliveryFee;            
+            DeliveryFee = deliveryFee;
+
+            CheckInvariants(this, new CreateOrderInvariatns(), new List<ValidationResult>());
         }
 
         public virtual DateTime CreationDate { get; protected set; }

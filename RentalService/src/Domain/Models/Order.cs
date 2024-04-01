@@ -1,4 +1,5 @@
 ﻿using Common.Domain;
+using Domain.DomainEvents;
 using Domain.Validations;
 using FluentValidation.Results;
 
@@ -18,6 +19,8 @@ namespace Domain.Models
             DeliveryFee = deliveryFee;
 
             CheckInvariants(this, new CreateOrderInvariatns(), new List<ValidationResult>());
+
+            AddDomainEvent(new OrderCreatedEvent(Id)); //Evento que vai pra mensageria
         }
 
         public virtual DateTime CreationDate { get; protected set; }

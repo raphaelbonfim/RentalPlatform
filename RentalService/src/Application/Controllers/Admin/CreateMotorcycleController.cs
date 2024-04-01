@@ -1,13 +1,11 @@
 ﻿using Application.DTOs.Admin;
-using Application.Services.Interfaces;
+using Application.Services.Commands.Interfaces;
 using Common.Application;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace Application.Controllers.Admin
 {
-    //TODO: Criar uma nova Arquivo para as Controllers/Services de Modificar (put) e excluir (httpDelete)
-
     [ApiController]
     [Route("api/v1/motorcycle")]
     public class CreateMotorcycleController : ControllerBase

@@ -47,6 +47,15 @@ namespace Infra.DataAccess.Mappings
             Map(x => x.PricePerDay)
                 .Column("price_per_day")
                 .Not.Nullable();
+
+            Map(x => x.FineValue)
+                .Column("fine_value");
+
+            Map(x => x.ExtraDailyValue)
+                .Column("extra_daily_value");
+
+            Map(x => x.TotalValue)
+                .Column("total_value");                
         }
     }
 }

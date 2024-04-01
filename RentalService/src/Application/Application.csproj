@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Infra.DataAccess\Infra.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Queries\Interfaces\" />
+  </ItemGroup>
+
 </Project>

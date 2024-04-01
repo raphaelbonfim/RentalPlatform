@@ -1,10 +1,10 @@
 ﻿using Application.DTOs.Admin;
-using Application.Services.Interfaces;
+using Application.Services.Commands.Interfaces;
 using Common.Application;
 using Domain.Repositories;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace Application.Services
+namespace Application.Services.Commands
 {
     public class DeleteMotorcycleCommandService : IDeleteMotorcycleCommandService
     {
@@ -27,7 +27,7 @@ namespace Application.Services
             //Se tiver registro de locação Não remover!
 
             //Se não, Remover do banco
-            await _motorcycleRepository.RemoveAsync(motorcycle, cancellationToken);           
+            await _motorcycleRepository.RemoveAsync(motorcycle, cancellationToken);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Application.DTOs.Admin;
 
-namespace Application.Services.Interfaces
+namespace Application.Services.Commands.Interfaces
 {
     public interface IDeleteMotorcycleCommandService
     {

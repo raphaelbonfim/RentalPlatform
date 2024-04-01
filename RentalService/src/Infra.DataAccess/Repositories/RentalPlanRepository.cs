@@ -9,7 +9,7 @@ namespace Infra.DataAccess.Repositories
 
         public async Task<bool> CheckIfPlansExist(CancellationToken cancellationToken)
         {
-            return await Session.QueryOver<RentalPlan>().RowCountAsync(cancellationToken) > 0;
+            return await Session.QueryOver<RentalPlan>().RowCountAsync(cancellationToken) == 0;
         }
     }
 }

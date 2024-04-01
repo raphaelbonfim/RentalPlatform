@@ -67,15 +67,20 @@
        forecast_end_date timestamp not null,
        days int2 not null,
        price_per_day float8 not null,
+       fine_value float8,
+       extra_daily_value float8,
+       total_value float8,
        primary key (Id)
     )
 
     create table rental_plans (
         Id uuid not null,
        modified_at timestamp not null,
-       Days int2 not null,
-       Price float8 not null,
-       PaymentFine float8 not null,
+       days int2 not null,
+       price float8 not null,
+       payment_fine float8 not null,
+       description varchar(255) not null,
+       extra_daily_fee float8,
        primary key (Id)
     )
 

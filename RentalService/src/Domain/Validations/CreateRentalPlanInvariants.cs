@@ -25,7 +25,7 @@ namespace Domain.Validations
 
             RuleFor(x => x.Description)
                 .NotEmpty()
-                .WithMessage("A descrição do plano não pode ser vaziar");        
+                .WithMessage("A descrição do plano não pode ser vazia");        
         }
     }
 }

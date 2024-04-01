@@ -13,8 +13,7 @@ namespace Domain.Models
             Guid motorcycleId,
             Guid rentalPlanId,
             short days,
-            double pricePerDay,
-            double fineValue,
+            double pricePerDay,            
             Guid id = default
             )
         {
@@ -26,8 +25,7 @@ namespace Domain.Models
             EndDate = null;
             ForecastEndDate = StartDate.AddDays(days);
             Days = days;
-            PricePerDay = pricePerDay;
-            FineValue = fineValue;
+            PricePerDay = pricePerDay;            
 
             CheckInvariants(this, new CreateRentalInvariants(), new List<ValidationResult>());
         }
@@ -45,25 +43,41 @@ namespace Domain.Models
         public virtual double TotalValue { get; protected set; }
 
 
-        public virtual void CloseRental(DateTime returnedDate, double fineValueToEarlyReturn, double extraDailyFee)
+        public virtual void CloseRental(double fineValueToEarlyReturn, double extraDailyFee)
         {
+            var returnedDate = DateTime.Today;
+
             if (returnedDate < ForecastEndDate)
                 FineValue = CalculateFineValue(returnedDate, fineValueToEarlyReturn);
-
 
             if (returnedDate > ForecastEndDate)
                 ExtraDailyValue = CalculateExtraDailyValue(returnedDate, extraDailyFee);
 
             EndDate = returnedDate;
             TotalValue = PricePerDay * Days + FineValue + ExtraDailyValue;
+
+            CheckInvariants(this, new CloseRentalMotorcycleInvariants(), new List<ValidationResult>());
+        }
+
+        public virtual double CalculateTotalRentalCost(DateTime returnedDate, double fineValueToEarlyReturn, double extraDailyFee)
+        {
+            if (returnedDate < ForecastEndDate)
+                FineValue = CalculateFineValue(returnedDate, fineValueToEarlyReturn);
+
+            if (returnedDate > ForecastEndDate)
+                ExtraDailyValue = CalculateExtraDailyValue(returnedDate, extraDailyFee);
+        
+            return PricePerDay * Days + FineValue + ExtraDailyValue;
         }
 
         private double CalculateFineValue(DateTime returnedDate, double fineValueToEarlyReturn)
         {
             var daysDiff = (ForecastEndDate - returnedDate.Date).TotalDays;
+            var dailyDiffValue = daysDiff * PricePerDay;
 
-            return fineValueToEarlyReturn * daysDiff;
+            return fineValueToEarlyReturn/100 * dailyDiffValue;
         }
+
         private double CalculateExtraDailyValue(DateTime returnedDate, double fineValueToEarlyReturn)
         {
             var daysDiff = (ForecastEndDate - ForecastEndDate.Date).TotalDays;

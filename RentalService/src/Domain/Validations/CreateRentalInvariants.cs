@@ -1,5 +1,4 @@
-﻿using Common.Domain.Validations;
-using Domain.Models;
+﻿using Domain.Models;
 using FluentValidation;
 
 namespace Domain.Validations

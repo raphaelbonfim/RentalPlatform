@@ -1,7 +1,7 @@
 ﻿using Application.DTOs.Admin;
 using Application.DTOs.DeliveryDriver;
 
-namespace Application.Services.Interfaces
+namespace Application.Services.Commands.Interfaces
 {
     public interface IUpdateDeliveryDriverCommandService
     {

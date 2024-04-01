@@ -18,13 +18,23 @@ namespace Infra.DataAccess.Mappings
                 .GeneratedBy.Assigned();
 
             Map(x => x.Days)
+                .Column("days")
                 .Not.Nullable();
 
             Map(x => x.Price)
+                .Column("price")
                 .Not .Nullable();
 
             Map(x => x.PaymentFine)
+                .Column("payment_fine")
                 .Not.Nullable();
+
+            Map(x => x.Description)
+                .Column("description")
+                .Not.Nullable();
+
+            Map(x => x.ExtraDailyFee)
+                .Column("extra_daily_fee");
         }
     }
 }

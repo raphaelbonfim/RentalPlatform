@@ -1,10 +1,10 @@
 ﻿using Application.DTOs.DeliveryDriver;
-using Application.Services.Interfaces;
+using Application.Services.Commands.Interfaces;
 using Common.Application;
 using Domain.Models;
 using Domain.Repositories;
 
-namespace Application.Services
+namespace Application.Services.Commands
 {
     public class CreateDeliveryDriverCommandService : ICreateDeliveryDriverCommandService
     {

@@ -1,25 +1,26 @@
-﻿using Application.DTOs.Admin;
+﻿using Application.DTOs.DeliveryDriver;
 using Application.Services.Commands.Interfaces;
 using Common.Application;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace Application.Controllers.Admin
+namespace Application.Controllers.DeliveryDriver
 {
     [ApiController]
-    [Route("api/v1/order")]
-    public class CreateOrderController : Controller
+    [Route("api/v1/open_rent_motorcycle")]
+    public class OpenRentMotorcycleController : ControllerBase
     {
-        private readonly ICreateOrderCommandService _commandService;
 
-        public CreateOrderController(ICreateOrderCommandService commandService)
+        private readonly IOpenRentMotorcycleCommandService _commandService;
+
+        public OpenRentMotorcycleController(IOpenRentMotorcycleCommandService commandService)
         {
             _commandService = commandService;
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(OutCreateOrderDTO), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> CreateOrder(InCreateOrderDTO dto, CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(OutOpenRentMotorcycleDTO), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> OpenRentMotorcycle(InOpenRentMotorcycleDTO dto, CancellationToken cancellationToken)
         {
             try
             {

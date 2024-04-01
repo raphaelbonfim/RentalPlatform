@@ -1,9 +1,9 @@
 ﻿using Application.DTOs.Admin;
-using Application.Services.Interfaces;
+using Application.Services.Commands.Interfaces;
 using Common.Application;
 using Domain.Repositories;
 
-namespace Application.Services
+namespace Application.Services.Commands
 {
     public class UpdateMotorcycleCommandService : IUpdateMotorcycleCommandService
     {
@@ -19,7 +19,7 @@ namespace Application.Services
             //Verificar se existe a moto com o ID
             var motorcycle = await _motorcycleRepository.GetByIdAsync(dto.Id);
 
-            if(motorcycle == null)
+            if (motorcycle == null)
             {
                 throw new BusinessException("Não existe uma moto com o Id informado.");
             }

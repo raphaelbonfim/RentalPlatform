@@ -19,4 +19,8 @@
 	  <ProjectReference Include="..\_Common\_Common.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="DAO\" />
+	</ItemGroup>
+
 </Project>

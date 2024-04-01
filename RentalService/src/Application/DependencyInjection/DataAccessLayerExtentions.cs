@@ -1,5 +1,7 @@
+using Domain.DAO;
 using Domain.Models;
 using Domain.Repositories;
+using Infra.DataAccess.DAO;
 using Infra.DataAccess.Repositories;
 
 namespace Application.DependencyInjection;
@@ -18,7 +20,8 @@ public static class DataAccessLayerExtentions
         #endregion
 
         #region DAO
-        //services.AddScoped<ITabelaFipeRepository, TabelaFipeRepository>();
+        services.AddScoped<IDeliveryDriverDao, DeliveryDriverDao>();
+        services.AddScoped<IMotorcycleDao, MotorcycleDao>();
         #endregion
 
         return services;

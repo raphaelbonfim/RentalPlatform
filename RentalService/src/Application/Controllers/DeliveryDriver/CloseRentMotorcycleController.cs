@@ -1,5 +1,5 @@
 ﻿using Application.DTOs.DeliveryDriver;
-using Application.Services.Interfaces;
+using Application.Services.Commands.Interfaces;
 using Common.Application;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -7,22 +7,21 @@ using System.Net;
 namespace Application.Controllers.DeliveryDriver
 {
     [ApiController]
-    [Route("api/v1/rent_motorcycle")]
-    public class RentMotorcycleController : ControllerBase
+    [Route("api/v1/close_rent_motorcycle")]
+    public class CloseRentMotorcycleController : ControllerBase
     {
+        private readonly ICloseRentMotorcycleCommandService _commandService;
 
-        private readonly IRentMotorcycleCommandService _commandService;
-
-        public RentMotorcycleController(IRentMotorcycleCommandService commandService)
+        public CloseRentMotorcycleController(ICloseRentMotorcycleCommandService commandService)
         {
             _commandService = commandService;
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(OutRentMotorcycleDTO), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> RentMotorcycle(InRentMotorcycleDTO dto, CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(OutCloseRentMotorcycleDTO), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> CloseRentMotorcycle(InCloseRentMotorcycleDTO dto, CancellationToken cancellationToken)
         {
-            try
+             try
             {
                 return Ok(await _commandService.ProcessAsync(dto, cancellationToken));
             }

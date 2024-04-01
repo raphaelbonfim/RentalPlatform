@@ -1,6 +1,6 @@
 ﻿namespace Application.DTOs.DeliveryDriver
 {
-    public class InRentMotorcycleDTO
+    public class InOpenRentMotorcycleDTO
     {
         public Guid DeliveryDriverId { get; set; }
         public Guid RentalPlanId { get; set; }

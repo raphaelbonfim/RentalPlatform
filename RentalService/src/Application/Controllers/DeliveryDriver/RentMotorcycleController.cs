@@ -7,19 +7,20 @@ using System.Net;
 namespace Application.Controllers.DeliveryDriver
 {
     [ApiController]
-    [Route("api/v1/rental")]
-    public class CreateRentalController : ControllerBase
+    [Route("api/v1/rent_motorcycle")]
+    public class RentMotorcycleController : ControllerBase
     {
-        private readonly ICreateRentalCommandService _commandService;
 
-        public CreateRentalController(ICreateRentalCommandService commandService)
+        private readonly IRentMotorcycleCommandService _commandService;
+
+        public RentMotorcycleController(IRentMotorcycleCommandService commandService)
         {
             _commandService = commandService;
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(OutCreateRentalDTO), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> CreateRental(InCreateRentalDTO dto, CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(OutRentMotorcycleDTO), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> RentMotorcycle(InRentMotorcycleDTO dto, CancellationToken cancellationToken)
         {
             try
             {
@@ -27,7 +28,7 @@ namespace Application.Controllers.DeliveryDriver
             }
             catch (BusinessException ex)
             {
-                return BadRequest(ex.Message);                
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {

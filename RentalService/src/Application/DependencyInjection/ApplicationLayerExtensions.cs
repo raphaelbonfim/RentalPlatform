@@ -13,6 +13,9 @@ namespace Application.DependencyInjection
             services.AddScoped<IUpdateMotorcycleCommandService, UpdateMotorcycleCommandService>();
             services.AddScoped<IDeleteMotorcycleCommandService, DeleteMotorcycleCommandService>();
             services.AddScoped<ICreateOrderCommandService, CreateOrderCommandService>();
+            services.AddScoped<IUpdateDeliveryDriverCommandService, UpdateDeliveryDriverCommandService>();
+            services.AddScoped<IRentMotorcycleCommandService, RentMotorcycleCommandService>();
+
            
             return services;
         }

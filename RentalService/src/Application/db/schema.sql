@@ -63,7 +63,7 @@
        motorcycle_id uuid not null,
        rental_plan_id uuid not null,
        start_date timestamp not null,
-       end_date timestamp not null,
+       end_date timestamp,
        forecast_end_date timestamp not null,
        days int2 not null,
        price_per_day float8 not null,

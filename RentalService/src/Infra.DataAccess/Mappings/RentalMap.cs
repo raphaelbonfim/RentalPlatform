@@ -34,8 +34,7 @@ namespace Infra.DataAccess.Mappings
                 .Not.Nullable();
 
             Map(x => x.EndDate)
-                .Column("end_date")
-                .Not.Nullable();
+                .Column("end_date");               
 
             Map(x => x.ForecastEndDate)
                 .Column("forecast_end_date")

@@ -1,5 +1,4 @@
-﻿using Application.DTOs.Admin;
-using Application.DTOs.DeliveryDriver;
+﻿using Application.DTOs.DeliveryDriver;
 
 namespace Application.Services.Interfaces
 {

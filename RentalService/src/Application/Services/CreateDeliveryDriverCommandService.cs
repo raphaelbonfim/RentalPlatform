@@ -33,17 +33,10 @@ namespace Application.Services
                 throw new BusinessException("Já existe essa CNH cadastrado no banco.");
             }
 
-            //Converter a img Base64 em imagem e pegar o endereço do localStorage_NomeDoARquivo
-            var cnhImageUrl = ReturnCNHImageUrl(dto.CNHBase64);
-
-            //Converter o tipo da CNH de string pra enum
-            var cnhType = ConvertCNHType(dto.CNHType);
-
             //Se nao, criar o aggregado DeliveryDriver
+            var deliveryDriver = new DeliveryDriver(dto.Name, dto.CNPJ, dto.Birthdate, dto.CNHNumber, dto.CNHBase64, dto.CNHType);
 
-            var deliveryDriver = new DeliveryDriver(dto.Name, dto.CNPJ, dto.Birthdate, dto.CNHNumber, cnhImageUrl, cnhType);
-
-            //Validar se é valido
+            //Validar o agregado
             if (deliveryDriver.Invalid)
             {
                 throw new BusinessException($"Falha ao criar o entregador: {deliveryDriver.ValidationResult.ToString(";")}");
@@ -54,22 +47,6 @@ namespace Application.Services
 
             //Retornar o ID
             return new OutCreateDeliveryDriverDTO() { Id = deliveryDriver.Id };
-        }
-
-
-        //TODO: Implementar método para salvar o arquivo local
-        private string ReturnCNHImageUrl(string base64)
-        {
-            return $"{base64}";
-        }
-
-        private ECnhType ConvertCNHType(string inCnhType)
-        {
-            var cnhType = Enum.Parse<ECnhType>(inCnhType);
-            if (cnhType == null)
-                throw new BusinessException("Tipo CNH informado Inválido");
-
-            return cnhType;
         }
     }
 }

@@ -19,7 +19,6 @@ namespace Application.Services.Commands
         {
             //Verificar se existe um CNPJ no banco
             var deliveryDriverCNPJ = await _deliveryDriverRepository.GetByCNPJAsync(dto.CNPJ);
-
             if (deliveryDriverCNPJ != null)
             {
                 throw new BusinessException("Já existe esse CNPJ cadastrado no banco.");
@@ -27,7 +26,6 @@ namespace Application.Services.Commands
 
             //Verificar se existe um NumeroCNH no banco
             var deliveryDriverCNHNumber = await _deliveryDriverRepository.GetByCNHNumberAsync(dto.CNHNumber);
-
             if (deliveryDriverCNHNumber != null)
             {
                 throw new BusinessException("Já existe essa CNH cadastrado no banco.");
@@ -37,10 +35,8 @@ namespace Application.Services.Commands
             var deliveryDriver = new DeliveryDriver(dto.Name, dto.CNPJ, dto.Birthdate, dto.CNHNumber, dto.CNHBase64, dto.CNHType);
 
             //Validar o agregado
-            if (deliveryDriver.Invalid)
-            {
-                throw new BusinessException($"Falha ao criar o entregador: {deliveryDriver.ValidationResult.ToString(";")}");
-            }
+            if (deliveryDriver.Invalid)            
+                throw new BusinessException($"Falha ao criar o entregador: {deliveryDriver.ValidationResult.ToString(";")}");            
 
             //Se sim, persistir no banco
             await _deliveryDriverRepository.SaveOrUpdateAsync(deliveryDriver, cancellationToken);

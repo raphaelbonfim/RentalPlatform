@@ -11,16 +11,16 @@ namespace Application.Services.Commands
     public class CreateOrderCommandService : ICreateOrderCommandService
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly IMessagingSender _messagingSender;
+        //private readonly IMessagingSender _messagingSender;
 
         public CreateOrderCommandService
             (
-            IOrderRepository orderRepository,
-            IMessagingSender messagingSender
+            IOrderRepository orderRepository
+            //IMessagingSender messagingSender
             )
         {
             _orderRepository = orderRepository;
-            _messagingSender = messagingSender;
+            //_messagingSender = messagingSender;
         }
 
         public async Task<OutCreateOrderDTO> ProcessAsync(InCreateOrderDTO dto, CancellationToken cancellationToken)

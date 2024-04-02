@@ -2,6 +2,7 @@
 using Application.Services.Commands.Interfaces;
 using Application.Services.Queries;
 using Application.Services.Queries.interfaces;
+using Common.Messaging;
 
 namespace Application.DependencyInjection
 {

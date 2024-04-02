@@ -44,7 +44,7 @@ public class OpenRentMotorcycleCommandService : IOpenRentMotorcycleCommandServic
             throw new BusinessException("Moto não encontrada.");
 
         // Verificar se existe algum aluguel ATIVO (EndDate is NULL) para essa moto
-        var activeRental = await _rentalRepository.GetRentalByMotorcycleId(motorcycle.Id);
+        var activeRental = await _rentalRepository.GetActiveRentalByMotorcycleId(motorcycle.Id);
         if (activeRental != null)
             throw new BusinessException("Já existe um aluguel ativo para essa moto.");
 

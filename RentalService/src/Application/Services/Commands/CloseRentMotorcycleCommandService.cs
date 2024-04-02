@@ -34,7 +34,7 @@ namespace Application.Services.Commands
                 throw new BusinessException($"Plano inválido");
 
             // Finalizar o aluguel
-            rental.CloseRental(dto.ReturnedDate, rentalPlan.PaymentFine, rentalPlan.ExtraDailyFee);
+            rental.CloseRental(rentalPlan.PaymentFine, rentalPlan.ExtraDailyFee);
 
             // Verificar se o agregado está válido
             if (rental.Invalid)

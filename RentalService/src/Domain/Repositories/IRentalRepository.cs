@@ -6,6 +6,7 @@ namespace Domain.Repositories
     {
         Task SaveOrUpdateAsync(Rental aggregate, CancellationToken cancellationToken = default);
         Task<Rental> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+        Task<Rental> GetActiveRentalByMotorcycleId(Guid motorcycleId, CancellationToken cancellationToken = default);
         Task<Rental> GetRentalByMotorcycleId(Guid motorcycleId, CancellationToken cancellationToken = default);
     }
 }

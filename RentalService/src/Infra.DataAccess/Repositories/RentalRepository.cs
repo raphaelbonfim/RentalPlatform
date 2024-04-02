@@ -12,7 +12,13 @@ namespace Infra.DataAccess.Repositories
         {
             return await Session
                 .Query<Rental>()
-                .FirstOrDefaultAsync(x => x.MotorcycleId == motorcycleId && x.EndDate == null ,cancellationToken: cancellationToken);
+                .FirstOrDefaultAsync(x => x.MotorcycleId == motorcycleId,cancellationToken: cancellationToken);
+        }
+        public async Task<Rental> GetActiveRentalByMotorcycleId(Guid motorcycleId, CancellationToken cancellationToken = default)
+        {
+            return await Session
+                .Query<Rental>()
+                .FirstOrDefaultAsync(x => x.MotorcycleId == motorcycleId && x.EndDate == null, cancellationToken: cancellationToken);
         }
     }
 }

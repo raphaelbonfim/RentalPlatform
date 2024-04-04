@@ -43,10 +43,8 @@ namespace Domain.Models
         public virtual double TotalValue { get; protected set; }
 
 
-        public virtual void CloseRental(double fineValueToEarlyReturn, double extraDailyFee)
-        {
-            var returnedDate = DateTime.Today;
-
+        public virtual void CloseRental(double fineValueToEarlyReturn, double extraDailyFee, DateTime returnedDate)
+        {     
             if (returnedDate < ForecastEndDate)
                 FineValue = CalculateFineValue(returnedDate, fineValueToEarlyReturn);
 
@@ -54,7 +52,10 @@ namespace Domain.Models
                 ExtraDailyValue = CalculateExtraDailyValue(returnedDate, extraDailyFee);
 
             EndDate = returnedDate;
-            TotalValue = PricePerDay * Days + FineValue + ExtraDailyValue;
+
+            var daysDiff = Days - ((ForecastEndDate - returnedDate.Date).TotalDays);
+
+            TotalValue = PricePerDay * daysDiff + FineValue + ExtraDailyValue;
 
             CheckInvariants(this, new CloseRentalMotorcycleInvariants(), new List<ValidationResult>());
         }
@@ -80,7 +81,7 @@ namespace Domain.Models
 
         private double CalculateExtraDailyValue(DateTime returnedDate, double fineValueToEarlyReturn)
         {
-            var daysDiff = (ForecastEndDate - ForecastEndDate.Date).TotalDays;
+            var daysDiff = (returnedDate - ForecastEndDate.Date).TotalDays;
 
             return fineValueToEarlyReturn * daysDiff;
         }

@@ -7,7 +7,7 @@ using System.Net;
 namespace Application.Controllers.Admin
 {
     [ApiController]
-    [Route("api/v1/delivery_driver")]
+    [Route("api/v1/delivery_driver/notifications")]
     public class GetNotificatedDeliveryDriversController : ControllerBase
     {
         private readonly IGetNotificatedDeliveryDriversQueryService _service;
@@ -22,18 +22,7 @@ namespace Application.Controllers.Admin
         [ProducesResponseType(typeof(ICollection<OutNotificatedDeliveryDriverQueryDto>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetNotificatedDeliveryDrivers(Guid orderId, CancellationToken cancellationToken)
         {
-            try
-            {
-                return Ok(await _service.ProcessAsync(orderId, cancellationToken));
-            }
-            catch (BusinessException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            return Ok(await _service.ProcessAsync(orderId, cancellationToken));
         }
     }
 }

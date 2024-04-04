@@ -1,6 +1,5 @@
 ﻿using Application.DTOs.Admin;
 using Application.Services.Commands.Interfaces;
-using Common.Application;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -20,21 +19,10 @@ namespace Application.Controllers.Admin
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.OK)]
 
-        public async Task UpdateMotorcycle(InUpdateMotorcycleDTO dto, CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateMotorcycle(InUpdateMotorcycleDTO dto, CancellationToken cancellationToken)
         {
-            try
-            {
-               await _commandService.ProcessAsync(dto, cancellationToken);
-                Ok();
-            }
-            catch (BusinessException ex)
-            {
-                 BadRequest(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                 StatusCode(500, ex.Message);
-            }
+            await _commandService.ProcessAsync(dto, cancellationToken);
+            return Ok();
         }
     }
 }

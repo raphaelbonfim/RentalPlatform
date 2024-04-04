@@ -64,9 +64,9 @@ namespace Application.Services.Utils
                 return null;
 
             if (base64.StartsWith(bmpType))
-                return ".bmp";
+                return "bmp";
             else
-                return ".png";
+                return "png";
         }
     }
 }

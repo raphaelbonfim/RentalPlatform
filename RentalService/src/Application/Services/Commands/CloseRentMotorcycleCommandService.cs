@@ -33,8 +33,13 @@ namespace Application.Services.Commands
             if (rentalPlan == null)
                 throw new BusinessException($"Plano inválido");
 
+            //Verificar a data de devolução da moto
+             
+            if(dto.ReturnedDate < rental.ForecastEndDate)
+                throw new BusinessException($"Erro ao finalizar contrato. A data de retorno não pode ser menor que a data de início do aluguel");
+            
             // Finalizar o aluguel
-            rental.CloseRental(rentalPlan.PaymentFine, rentalPlan.ExtraDailyFee);
+            rental.CloseRental(rentalPlan.PaymentFine, rentalPlan.ExtraDailyFee, dto.ReturnedDate);
 
             // Verificar se o agregado está válido
             if (rental.Invalid)

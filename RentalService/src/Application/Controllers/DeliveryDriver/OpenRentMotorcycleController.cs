@@ -7,7 +7,7 @@ using System.Net;
 namespace Application.Controllers.DeliveryDriver
 {
     [ApiController]
-    [Route("api/v1/open_rent_motorcycle")]
+    [Route("api/v1/motorcycle/rent/open")]
     public class OpenRentMotorcycleController : ControllerBase
     {
 
@@ -22,18 +22,7 @@ namespace Application.Controllers.DeliveryDriver
         [ProducesResponseType(typeof(OutOpenRentMotorcycleDTO), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> OpenRentMotorcycle(InOpenRentMotorcycleDTO dto, CancellationToken cancellationToken)
         {
-            try
-            {
-                return Ok(await _commandService.ProcessAsync(dto, cancellationToken));
-            }
-            catch (BusinessException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            return Ok(await _commandService.ProcessAsync(dto, cancellationToken));
         }
     }
 }

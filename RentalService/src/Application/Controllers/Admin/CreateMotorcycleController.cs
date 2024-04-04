@@ -21,18 +21,7 @@ namespace Application.Controllers.Admin
         [ProducesResponseType(typeof(OutCreateMotorcycleDTO), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> CreateMotorcycle(InCreateMotorcycleDTO dto, CancellationToken cancellationToken)
         {
-            try
-            {
-                return Ok(await _commandService.ProcessAsync(dto, cancellationToken));
-            }
-            catch (BusinessException ex)
-            {
-                return BadRequest(ex.Message);               
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            return Ok(await _commandService.ProcessAsync(dto, cancellationToken));
         }
     }
 }

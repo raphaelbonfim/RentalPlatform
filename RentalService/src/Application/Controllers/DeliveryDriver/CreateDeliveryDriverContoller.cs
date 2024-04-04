@@ -21,18 +21,7 @@ namespace Application.Controllers.DeliveryDriver
         [ProducesResponseType(typeof(OutCreateDeliveryDriverDTO), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> CreateDeliveryDriver(InCreateDeliveryDriverDTO dto, CancellationToken cancellationToken)
         {
-            try
-            {
-                return Ok(await _commandService.ProcessAsync(dto, cancellationToken));
-            }
-            catch (BusinessException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            return Ok(await _commandService.ProcessAsync(dto, cancellationToken));
         }
     }
 }

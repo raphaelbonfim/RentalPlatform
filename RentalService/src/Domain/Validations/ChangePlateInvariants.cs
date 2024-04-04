@@ -5,8 +5,7 @@ using FluentValidation;
 namespace Domain.Validations
 {
     public class ChangePlateInvariants : AbstractValidator<Motorcycle>
-    {
-        //Regra de negócio, no DDD é chamado de Invariants
+    {        
         public ChangePlateInvariants()
         {
             RuleFor(x => x.Plate)

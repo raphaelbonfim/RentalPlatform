@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.DeliveryDriver;
 using Application.Services.Commands.Interfaces;
+using Application.Services.Utils;
 using Common.Application;
 using Domain.Models;
 using Domain.Repositories;
@@ -32,11 +33,16 @@ namespace Application.Services.Commands
             }
 
             //Se nao, criar o aggregado DeliveryDriver
-            var deliveryDriver = new DeliveryDriver(dto.Name, dto.CNPJ, dto.Birthdate, dto.CNHNumber, dto.CNHBase64, dto.CNHType);
+            var deliveryDriverId = Guid.NewGuid();
+            var deliveryDriver = new DeliveryDriver(dto.Name, dto.CNPJ, dto.Birthdate, dto.CNHNumber,
+                CnhHelper.GetImageUrl(deliveryDriverId, dto.CNHBase64),
+                CnhHelper.GetCnhType(dto.CNHType), deliveryDriverId);
 
-            //Validar o agregado
-            if (deliveryDriver.Invalid)            
-                throw new BusinessException($"Falha ao criar o entregador: {deliveryDriver.ValidationResult.ToString(";")}");            
+            if (deliveryDriver.Invalid)
+                throw new BusinessException($"Falha ao criar o entregador: {deliveryDriver.ValidationResult.ToString(";")}");
+
+            // Salva imagem da CNH
+            CnhHelper.SaveCnhImage(dto.CNHBase64, deliveryDriver.CNH.ImageUrl);
 
             //Se sim, persistir no banco
             await _deliveryDriverRepository.SaveOrUpdateAsync(deliveryDriver, cancellationToken);

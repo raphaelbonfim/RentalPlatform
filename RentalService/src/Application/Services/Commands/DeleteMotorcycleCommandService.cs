@@ -26,10 +26,10 @@ namespace Application.Services.Commands
             var motorcycle = await _motorcycleRepository.GetByIdAsync(dto.Id);
             if (motorcycle == null)
                 throw new BusinessException($"Moto com o id: {dto.Id} não encontrada");
-         
+
             //Se tiver registro de locação Não remover!
             var rental = await _rentalRepository.GetRentalByMotorcycleId(motorcycle.Id);
-            if(rental != null)
+            if (rental != null)
                 throw new BusinessException($"Erro ao excluir moto, ela possui historico de aluguel");
 
             //Se não, Remover do banco

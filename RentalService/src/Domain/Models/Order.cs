@@ -3,7 +3,6 @@ using Domain.DomainEvents;
 using Domain.Validations;
 using FluentValidation.Results;
 
-
 namespace Domain.Models
 {
 

@@ -47,10 +47,28 @@ namespace Domain.Models
             });
         }
 
-        public virtual void AddDelivery() { }
-        public virtual void AcceptDelivery() { }
-        public virtual void RejectDelivery() { }
-        public virtual void CloseDelivery() { }
+        public virtual void AddDelivery(Guid orderId)
+        {
+            //TODO: Implementar: Quando a mensagem OrderCreatedEvent (notificação) recebida do broker for processada,
+            //esse método adicionaria o delivery com o OrderId recebido
+        }
 
+        public virtual void AcceptDelivery(Guid deliveryId)
+        {
+            //TODO: Implementar: Quando o entregador aceitar no app a entrega,
+            //marcaremos a entrega como "Accepted" e publicaremos a mensagem OrderAceptedEvent para que o agregado order atualize seu status para "Accepted"
+            //e atualizará todos as outras notiticações dos outros entregadores de que esse pedido não está mais disponível.
+        }
+
+        public virtual void RejectDelivery(Guid deliveryId)
+        {
+            //TODO: Implementar: Quando o entregador rejeitar no app a entrega, marcaremos a entrega como "Rejected", para efeito de histórico
+        }
+
+        public virtual void CloseDelivery(Guid deliveryId)
+        {
+            //TODO: Implementar: Quando o entregador finalizar a entrega, marcaremos ela como "Delivered" e publicaremos a mensagem,
+            // OrderDeliveredEvent para que o agregado order atualize seu status para "Delivered".
+        }
     }
 }

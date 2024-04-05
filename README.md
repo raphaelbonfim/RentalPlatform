@@ -14,3 +14,10 @@ Foram usados os conceitos:
 Para executar a aplicação:
 
 Acesse a pasta "ArquivosAuxiliares" e abra o arquivo "Preparação para rodar o sistema.docx" e siga o passo a passo.
+
+Essa pasta também contém:
+- Diagrama do projeto
+- Collection do Postman para teste das APIs
+- Roteiro de execução das APIs para testes.
+- Imagens e string base64 (png e bpm) das CNHs utilizadas para o teste
+

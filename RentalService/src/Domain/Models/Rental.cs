@@ -44,7 +44,9 @@ namespace Domain.Models
 
 
         public virtual void CloseRental(double fineValueToEarlyReturn, double extraDailyFee, DateTime returnedDate)
-        {     
+        {
+            returnedDate = returnedDate.Date;
+
             if (returnedDate < ForecastEndDate)
                 FineValue = CalculateFineValue(returnedDate, fineValueToEarlyReturn);
 
@@ -53,7 +55,7 @@ namespace Domain.Models
 
             EndDate = returnedDate;
 
-            var daysDiff = Days - ((ForecastEndDate - returnedDate.Date).TotalDays);
+            var daysDiff = Days - ((ForecastEndDate - returnedDate).TotalDays);
 
             TotalValue = PricePerDay * daysDiff + FineValue + ExtraDailyValue;
 

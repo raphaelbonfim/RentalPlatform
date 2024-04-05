@@ -2,8 +2,8 @@
 {
     public class OutCloseRentMotorcycleDTO
     {
-        public double ExtraDailyValue { get; set; }
-        public double FineValue { get; set; }
-        public double TotalValue { get; set; }
+        public string ExtraDailyValue { get; set; }
+        public string FineValue { get; set; }
+        public string TotalValue { get; set; }
     }
 }

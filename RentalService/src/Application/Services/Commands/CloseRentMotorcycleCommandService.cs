@@ -35,7 +35,7 @@ namespace Application.Services.Commands
 
             //Verificar a data de devolução da moto
              
-            if(dto.ReturnedDate < rental.ForecastEndDate)
+            if(dto.ReturnedDate < rental.StartDate)
                 throw new BusinessException($"Erro ao finalizar contrato. A data de retorno não pode ser menor que a data de início do aluguel");
             
             // Finalizar o aluguel
@@ -51,9 +51,9 @@ namespace Application.Services.Commands
             // retornar
             return new OutCloseRentMotorcycleDTO
             {
-                ExtraDailyValue = rental.ExtraDailyValue,
-                FineValue = rental.FineValue,
-                TotalValue = rental.TotalValue
+                ExtraDailyValue = rental.ExtraDailyValue.ToString("C2"),
+                FineValue = rental.FineValue.ToString("C2"),
+                TotalValue = rental.TotalValue.ToString("C2")
             };
         }
     }

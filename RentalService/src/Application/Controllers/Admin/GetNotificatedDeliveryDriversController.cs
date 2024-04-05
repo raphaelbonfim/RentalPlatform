@@ -7,7 +7,7 @@ using System.Net;
 namespace Application.Controllers.Admin
 {
     [ApiController]
-    [Route("api/v1/delivery_driver/notifications")]
+    [Route("api/v1/delivery_driver/")]
     public class GetNotificatedDeliveryDriversController : ControllerBase
     {
         private readonly IGetNotificatedDeliveryDriversQueryService _service;

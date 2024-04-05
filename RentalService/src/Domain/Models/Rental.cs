@@ -37,6 +37,7 @@ namespace Domain.Models
         public virtual DateTime? EndDate { get; protected set; }
         public virtual DateTime ForecastEndDate { get; protected set; }
         public virtual short Days { get; protected set; }
+        public virtual double RentalValue { get; protected set; }
         public virtual double PricePerDay { get; protected set; }
         public virtual double FineValue { get; protected set; }
         public virtual double ExtraDailyValue { get; protected set; }
@@ -53,25 +54,16 @@ namespace Domain.Models
             if (returnedDate > ForecastEndDate)
                 ExtraDailyValue = CalculateExtraDailyValue(returnedDate, extraDailyFee);
 
-            EndDate = returnedDate;
+            EndDate = returnedDate;   
 
-            var daysDiff = Days - ((ForecastEndDate - returnedDate).TotalDays);
+            var daysUsed = (returnedDate - StartDate).TotalDays;
 
-            TotalValue = PricePerDay * daysDiff + FineValue + ExtraDailyValue;
+            RentalValue = returnedDate > ForecastEndDate ? Days * PricePerDay : daysUsed * PricePerDay;
+
+            TotalValue = RentalValue + FineValue + ExtraDailyValue;
 
             CheckInvariants(this, new CloseRentalMotorcycleInvariants(), new List<ValidationResult>());
-        }
-
-        public virtual double CalculateTotalRentalCost(DateTime returnedDate, double fineValueToEarlyReturn, double extraDailyFee)
-        {
-            if (returnedDate < ForecastEndDate)
-                FineValue = CalculateFineValue(returnedDate, fineValueToEarlyReturn);
-
-            if (returnedDate > ForecastEndDate)
-                ExtraDailyValue = CalculateExtraDailyValue(returnedDate, extraDailyFee);
-        
-            return PricePerDay * Days + FineValue + ExtraDailyValue;
-        }
+        }   
 
         private double CalculateFineValue(DateTime returnedDate, double fineValueToEarlyReturn)
         {

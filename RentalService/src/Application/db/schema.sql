@@ -67,6 +67,7 @@
        forecast_end_date timestamp not null,
        days int2 not null,
        price_per_day float8 not null,
+       rental_value float8,
        fine_value float8,
        extra_daily_value float8,
        total_value float8,

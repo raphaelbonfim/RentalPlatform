@@ -48,6 +48,9 @@ namespace Infra.DataAccess.Mappings
                 .Column("price_per_day")
                 .Not.Nullable();
 
+            Map(x => x.RentalValue)
+                .Column("rental_value");     
+            
             Map(x => x.FineValue)
                 .Column("fine_value");
 
